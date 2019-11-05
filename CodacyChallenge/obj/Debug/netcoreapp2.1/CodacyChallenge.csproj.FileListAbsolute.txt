@@ -1,0 +1,11 @@
+D:\Dev\CodacyChallenge\CodacyChallenge\bin\Debug\netcoreapp2.1\CodacyChallenge.deps.json
+D:\Dev\CodacyChallenge\CodacyChallenge\bin\Debug\netcoreapp2.1\CodacyChallenge.runtimeconfig.json
+D:\Dev\CodacyChallenge\CodacyChallenge\bin\Debug\netcoreapp2.1\CodacyChallenge.runtimeconfig.dev.json
+D:\Dev\CodacyChallenge\CodacyChallenge\bin\Debug\netcoreapp2.1\CodacyChallenge.dll
+D:\Dev\CodacyChallenge\CodacyChallenge\bin\Debug\netcoreapp2.1\CodacyChallenge.pdb
+D:\Dev\CodacyChallenge\CodacyChallenge\obj\Debug\netcoreapp2.1\CodacyChallenge.csprojAssemblyReference.cache
+D:\Dev\CodacyChallenge\CodacyChallenge\obj\Debug\netcoreapp2.1\CodacyChallenge.csproj.CoreCompileInputs.cache
+D:\Dev\CodacyChallenge\CodacyChallenge\obj\Debug\netcoreapp2.1\CodacyChallenge.AssemblyInfoInputs.cache
+D:\Dev\CodacyChallenge\CodacyChallenge\obj\Debug\netcoreapp2.1\CodacyChallenge.AssemblyInfo.cs
+D:\Dev\CodacyChallenge\CodacyChallenge\obj\Debug\netcoreapp2.1\CodacyChallenge.dll
+D:\Dev\CodacyChallenge\CodacyChallenge\obj\Debug\netcoreapp2.1\CodacyChallenge.pdb
