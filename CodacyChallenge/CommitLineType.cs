@@ -7,6 +7,5 @@ namespace CodacyChallenge
     enum CommitLineType
     {
         Merge, Author, Date
-
     }
 }

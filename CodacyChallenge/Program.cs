@@ -86,7 +86,6 @@ namespace CodacyChallenge
             workingDir += gitHubUrlArray[gitHubUrlArray.Length - 1];
         }
 
-
     }
 
 }
