@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CodacyChallenge
+namespace CommitViewer.Models
 {
     public class Commit
     {

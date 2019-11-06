@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using CommitViewer.Models;
 
-namespace CodacyChallenge.CommitProcessors
+namespace CommitViewer.CommitProcessors
 {
     internal interface ICommitProcessor
     {

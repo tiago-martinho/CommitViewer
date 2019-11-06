@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodacyChallenge\CodacyChallenge.csproj" />
+    <ProjectReference Include="..\CodacyChallenge\CommitViewer.csproj" />
   </ItemGroup>
 
 </Project>

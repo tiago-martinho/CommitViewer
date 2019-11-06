@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
+using CommitViewer.Models;
 
-namespace CodacyChallenge
+namespace CommitViewer.Utils
 {
     internal static class CommitUtils
     {

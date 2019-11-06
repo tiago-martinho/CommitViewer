@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dev\\codacy-challenge\\CodacyChallenge\\CodacyChallenge.csproj": {}
+    "C:\\dev\\codacy-challenge\\CodacyChallenge\\CodacyChallenge.csproj": {}
   },
   "projects": {
-    "D:\\Dev\\codacy-challenge\\CodacyChallenge\\CodacyChallenge.csproj": {
-      "version": "1.0.0",
+    "C:\\dev\\codacy-challenge\\CodacyChallenge\\CodacyChallenge.csproj": {
+      "version": "0.0.1",
       "restore": {
-        "projectUniqueName": "D:\\Dev\\codacy-challenge\\CodacyChallenge\\CodacyChallenge.csproj",
+        "projectUniqueName": "C:\\dev\\codacy-challenge\\CodacyChallenge\\CodacyChallenge.csproj",
         "projectName": "CodacyChallenge",
-        "projectPath": "D:\\Dev\\codacy-challenge\\CodacyChallenge\\CodacyChallenge.csproj",
-        "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
-        "outputPath": "D:\\Dev\\codacy-challenge\\CodacyChallenge\\obj\\",
+        "projectPath": "C:\\dev\\codacy-challenge\\CodacyChallenge\\CodacyChallenge.csproj",
+        "packagesPath": "C:\\Users\\tiagomartinho.soares\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\codacy-challenge\\CodacyChallenge\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tiagomartinho.soares\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -49,10 +49,16 @@
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

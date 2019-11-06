@@ -1,34 +1,20 @@
-﻿using CodacyChallenge.CommitProcessors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using CommitViewer.CommitProcessors;
+using CommitViewer.Models;
 
-namespace CodacyChallenge
+namespace CommitViewer.Utils
 {
     public static class ProcessUtils
     {
 
         /// <summary>
-        /// Validates and returns the git environment variable value if it's valid.
-        /// The user must have git installed and an env variable with key = GIT in order to run the program
-        /// </summary>
-        public static string ValidateGitInstallation()
-        {
-            string gitEnvValue = Environment.GetEnvironmentVariable("GIT");
-            if (string.IsNullOrWhiteSpace(gitEnvValue))
-            {
-                throw new InvalidOperationException("The GIT environment variable is not set. Please set the environment variable pointing to your git directory");
-            }
-
-            return gitEnvValue;
-        }
-
-        /// <summary>
         /// Starts the repo clone process. Waits until the process is finished. Returns the working directory
         /// </summary>
-        public static string StartCloneProcess(string gitEnvPath, string workingDir, string githubUrl)
+        public static string StartCloneProcess(string workingDir, string githubUrl)
         {
-            ProcessStartInfo cloneProcessInfo = GetCloneProcessInfo(gitEnvPath, workingDir, githubUrl);
+            ProcessStartInfo cloneProcessInfo = GetCloneProcessInfo(Git.GitPath, workingDir, githubUrl);
             Process cloneProcess = new Process { StartInfo = cloneProcessInfo };
             cloneProcess.Start();
             cloneProcess.WaitForExit();
@@ -40,9 +26,24 @@ namespace CodacyChallenge
         /// Starts the repo log process. Waits until process is finished.
         /// Returns a commit enumerable
         /// </summary>
-        public static IEnumerable<Commit> StartLogProcess(string gitEnvPath, string workingDir)
+        public static IEnumerable<Commit> StartLogProcess(string workingDir)
         {
-            ProcessStartInfo logProcessInfo = GetLogProcessInfo(gitEnvPath, workingDir);
+            ProcessStartInfo logProcessInfo = GetLogProcessInfo(Git.GitPath, workingDir);
+            Process logProcess = new Process { StartInfo = logProcessInfo };
+            logProcess.Start();
+            ICommitProcessor commitProcessor = new CommitProcessor();
+            IEnumerable<Commit> commits = commitProcessor.ProcessCommitStream(logProcess.StandardOutput);
+            logProcess.WaitForExit();
+            return commits;
+        }
+
+        /// <summary>
+        /// Starts the repo log process. Waits until process is finished.
+        /// Returns a commit enumerable
+        /// </summary>
+        public static IEnumerable<Commit> StartLogProcess(string workingDir, int maxCount, int skipNumber)
+        {
+            ProcessStartInfo logProcessInfo = GetLogProcessInfo(Git.GitPath, workingDir, maxCount, skipNumber);
             Process logProcess = new Process { StartInfo = logProcessInfo };
             logProcess.Start();
             ICommitProcessor commitProcessor = new CommitProcessor();
@@ -85,6 +86,20 @@ namespace CodacyChallenge
                 RedirectStandardInput = true,
                 RedirectStandardOutput = true,
                 Arguments = "log"
+            };
+
+            return startInfo;
+        }
+
+        private static ProcessStartInfo GetLogProcessInfo(string gitEnvPath, string workingDir, int maxCount, int skipNumber)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo(gitEnvPath)
+            {
+                UseShellExecute = false,
+                WorkingDirectory = workingDir,
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                Arguments = @"log --max-count=" + maxCount + " --skip=" + skipNumber
             };
 
             return startInfo;

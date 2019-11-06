@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
+using CommitViewer.Models;
+using CommitViewer.Utils;
 
-namespace CodacyChallenge
+namespace CommitViewer
 {
     class Program
     {
@@ -14,12 +13,12 @@ namespace CodacyChallenge
 
         static void Main(string[] args)
         {
-            string gitEnvPath = ProcessUtils.ValidateGitInstallation();
+            Git.Setup();
             ReadUserInput();
             Console.WriteLine("*************** Starting cloning process ***************");
-            workingDir = ProcessUtils.StartCloneProcess(gitEnvPath, workingDir, gitHubUrl);
+            workingDir = ProcessUtils.StartCloneProcess(workingDir, gitHubUrl);
             Console.WriteLine("*************** Finished cloning process. Starting log process ***************");
-            IEnumerable<Commit> commits = ProcessUtils.StartLogProcess(gitEnvPath, workingDir);
+            IEnumerable<Commit> commits = ProcessUtils.StartLogProcess(workingDir);
             Console.WriteLine("*************** Retrieved git commits. Returning the list of commits: ***************");
             Console.WriteLine(commits.ToList());
         }

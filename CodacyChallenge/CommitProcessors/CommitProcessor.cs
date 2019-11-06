@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Text;
+using CommitViewer.Enums;
+using CommitViewer.Models;
+using CommitViewer.Utils;
 
-namespace CodacyChallenge.CommitProcessors
+namespace CommitViewer.CommitProcessors
 {
     internal class CommitProcessor : ICommitProcessor
     {

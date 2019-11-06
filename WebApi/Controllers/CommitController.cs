@@ -1,10 +1,9 @@
-﻿using CodacyChallenge;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CommitViewer.Models;
+using WebApi.Pagination;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
@@ -16,21 +15,28 @@ namespace WebApi.Controllers
     {
 
         private readonly ILogger logger;
+        private readonly ICommitService commitService;
 
-        public CommitController(ILogger<CommitController> logger)
+        public CommitController(ILogger<CommitController> logger, ICommitService commitService)
         {
             this.logger = logger;
+            this.commitService = commitService;
         }
 
-        [HttpGet("/")]
+        [HttpGet]
         public ActionResult<IReadOnlyCollection<Commit>> GetCommitCollection(string workingDir, string githubUrl)
         {
             logger.LogDebug("GetCommitCollection called with workingDir: {0} and githubUrl: {1}", workingDir, githubUrl);
-            string gitEnvValue = ProcessUtils.ValidateGitInstallation();
-            workingDir = ProcessUtils.StartCloneProcess(gitEnvValue, workingDir, githubUrl);
-            IEnumerable<Commit> commits = ProcessUtils.StartLogProcess(gitEnvValue, workingDir);
+            ICollection<Commit> commits = commitService.GetCommitCollection(workingDir, githubUrl);
+            return Ok(commits);
+        }
 
-            return Ok(commits.ToList());
+        [HttpGet("paged")]
+        public ActionResult<IPage<Commit>> GetPagedCommits(string workingDir, string githubUrl, [FromHeader(Name = "PageRequest")] PageRequest pageRequest)
+        {
+            logger.LogDebug("GetCommitCollection called with workingDir: {0}, githubUrl: {1} and pageRequest: {2}", workingDir, githubUrl, pageRequest);
+            IPage<Commit> commits = commitService.GetPagedCommits(workingDir, githubUrl, pageRequest);
+            return Ok(commits);
         }
         
     }
