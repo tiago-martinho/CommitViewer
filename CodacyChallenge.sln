@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodacyChallenge", "CodacyChallenge\CodacyChallenge.csproj", "{619F547B-E7D1-459B-8526-60120791E20B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{782401D6-CEA6-4365-B1FD-BF3CD8FFA5B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{199DDBCF-ACE6-4361-ADFC-22B6F2150C6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{619F547B-E7D1-459B-8526-60120791E20B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{619F547B-E7D1-459B-8526-60120791E20B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{619F547B-E7D1-459B-8526-60120791E20B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{782401D6-CEA6-4365-B1FD-BF3CD8FFA5B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{782401D6-CEA6-4365-B1FD-BF3CD8FFA5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{782401D6-CEA6-4365-B1FD-BF3CD8FFA5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{782401D6-CEA6-4365-B1FD-BF3CD8FFA5B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{199DDBCF-ACE6-4361-ADFC-22B6F2150C6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{199DDBCF-ACE6-4361-ADFC-22B6F2150C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{199DDBCF-ACE6-4361-ADFC-22B6F2150C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{199DDBCF-ACE6-4361-ADFC-22B6F2150C6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

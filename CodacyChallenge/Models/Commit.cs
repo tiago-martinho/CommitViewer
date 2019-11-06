@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CodacyChallenge
 {
-    class Commit
+    public class Commit
     {
         public Author Author { get; set; }
 
@@ -16,5 +16,10 @@ namespace CodacyChallenge
 
         public bool IsMerge { get; set; }
         public string MergeId { get; set; }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }
