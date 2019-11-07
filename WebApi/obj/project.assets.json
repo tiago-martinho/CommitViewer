@@ -4495,16 +4495,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
-      },
-      "CommitViewer/0.0.1": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "compile": {
-          "bin/placeholder/CommitViewer.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/CommitViewer.dll": {}
-        }
       }
     }
   },
@@ -12186,16 +12176,10 @@
         "system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
-    },
-    "CommitViewer/0.0.1": {
-      "type": "project",
-      "path": "../CodacyChallenge/CommitViewer.csproj",
-      "msbuildProject": "../CodacyChallenge/CommitViewer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "CommitViewer >= 0.0.1",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
@@ -12231,11 +12215,7 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "projectReferences": {
-            "C:\\dev\\codacy-challenge\\CodacyChallenge\\CommitViewer.csproj": {
-              "projectPath": "C:\\dev\\codacy-challenge\\CodacyChallenge\\CommitViewer.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

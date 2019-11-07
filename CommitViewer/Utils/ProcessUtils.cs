@@ -95,7 +95,7 @@ namespace CommitViewer.Utils
                 WorkingDirectory = workingDir,
                 RedirectStandardInput = true,
                 RedirectStandardOutput = true,
-                Arguments = "log"
+                Arguments = "log HEAD"
             };
 
             return startInfo;
@@ -109,7 +109,7 @@ namespace CommitViewer.Utils
                 WorkingDirectory = workingDir,
                 RedirectStandardInput = true,
                 RedirectStandardOutput = true,
-                Arguments = "log --max-count=" + maxCount + " --skip=" + skipNumber
+                Arguments = "log --max-count=" + maxCount + " --skip=" + skipNumber + " HEAD"
             };
 
             return startInfo;
