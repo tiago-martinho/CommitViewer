@@ -19,8 +19,11 @@ namespace CommitViewer
             workingDir = ProcessUtils.StartCloneProcess(workingDir, gitHubUrl);
             Console.WriteLine("*************** Finished cloning process. Starting log process ***************");
             IEnumerable<Commit> commits = ProcessUtils.StartLogProcess(workingDir);
+            Console.WriteLine("*************** Deleting cloned repo locally ***************");
+            DirectoryUtils.DeleteDirectory(workingDir);
             Console.WriteLine("*************** Retrieved git commits. Returning the list of commits: ***************");
             Console.WriteLine(commits.ToList());
+
         }
 
         /// <summary>

@@ -16,13 +16,15 @@ namespace WebApi.Services
         /// <param name="githubUrl"></param>
         /// <returns></returns>
         ICollection<Commit> GetCommitCollection(string workingDir, string githubUrl);
+
         /// <summary>
         /// Returns a page of commits for a given local working directory and a GitHub url
         /// </summary>
         /// <param name="workingDir"></param>
         /// <param name="githubUrl"></param>
-        /// <param name="pageRequest"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
         /// <returns></returns>
-        IPage<Commit> GetPagedCommits(string workingDir, string githubUrl, PageRequest pageRequest);
+        IPage<Commit> GetPagedCommits(string workingDir, string githubUrl, int pageNumber, int pageSize);
     }
 }
