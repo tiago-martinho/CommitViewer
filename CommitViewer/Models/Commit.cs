@@ -17,7 +17,7 @@ namespace CommitViewer.Models
 
         public override string ToString()
         {
-            return base.ToString();
+            return $"{nameof(Author)}: {Author}, {nameof(Date)}: {Date}, {nameof(Hash)}: {Hash}, {nameof(Message)}: {Message}, {nameof(IsMerge)}: {IsMerge}, {nameof(MergeId)}: {MergeId}";
         }
     }
 }

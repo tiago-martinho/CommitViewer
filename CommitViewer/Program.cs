@@ -18,12 +18,14 @@ namespace CommitViewer
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
+                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
                 .WriteTo.Console()
                 .CreateLogger();
 
             ReadUserInput();
             try
             {
+              
                 //GitHub API call
                 throw new IOException();
             }
@@ -35,10 +37,11 @@ namespace CommitViewer
             the specific exceptions and simply catch the general one */
             catch (Exception e) when (e is TimeoutException || e is IOException)
             {
+                Log.Error("An error has occurred while trying to use the GitHub API.", e);
+                Log.Warning("Using CommitViewer app process as a fallback...");
                 CommitViewer.Start(workingDir, gitHubUrl);
             }
             
-
         }
 
         /// <summary>
