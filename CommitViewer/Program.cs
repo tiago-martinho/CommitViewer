@@ -1,10 +1,16 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Polly;
+using Polly.Extensions.Http;
 using Serilog;
+using Serilog.Formatting.Compact;
+using Serilog.Sinks.SystemConsole.Themes;
 
 namespace CommitViewer
 {
-    class Program
+    internal static class Program
     {
         private static string workingDir;
         private static string gitHubUrl;
@@ -16,17 +22,14 @@ namespace CommitViewer
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
-                .WriteTo.Console()
-                .CreateLogger();
 
+            ConfigureLogger();
+            ConfigureServices();
             ReadUserInput();
+
             try
             {
-              
-                //GitHub API call
+                //Use GitHubClient
                 throw new IOException();
             }
 
@@ -41,7 +44,28 @@ namespace CommitViewer
                 Log.Warning("Using CommitViewer app process as a fallback...");
                 CommitViewer.Start(workingDir, gitHubUrl);
             }
-            
+
+        }
+
+
+        private static void ConfigureLogger()
+        {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.Console()
+                .CreateLogger();
+
+        }
+
+        private static void ConfigureServices()
+        {
+
+            var services = new ServiceCollection();
+
+            // A circuit breaker pattern could be added in distributed environments
+            services.AddHttpClient<GitHubClient>()
+                .AddPolicyHandler(GetRetryPolicy());
         }
 
         /// <summary>
@@ -56,6 +80,16 @@ namespace CommitViewer
                 Console.WriteLine("Please provide your working directory");
                 workingDir = Console.ReadLine();
             }
+        }
+
+        /// <summary>
+        /// Retry policy that defines how many retries and how long between each retry will the HttpClient do for each unsuccessful http request
+        /// </summary>
+        /// <returns></returns>
+        static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+        {
+            return HttpPolicyExtensions.HandleTransientHttpError().WaitAndRetryAsync(3,
+                retryWaitTime => TimeSpan.FromSeconds(Math.Pow(2, retryWaitTime)));
         }
     }
 

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using CommitViewer.CommitProcessors;
 using CommitViewer.Models;
 using CommitViewer.Utils;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Serilog;
 
@@ -15,6 +12,12 @@ namespace CommitViewer
     static class CommitViewer
     {
         /// <summary>
+        /// We only need to instantiate the CommitProcessor once when we start the CommitViewer app
+        /// However, it's not a static class so that we have can multiple implementations and change which we want to use easily
+        /// </summary>
+        private static readonly ICommitProcessor CommitProcessor = new CommitProcessor();
+
+        /// <summary>
         /// Starts the CommitViewer main process. Structured data is serialized and logged in both the console and a log file
         /// </summary>
         /// <param name="workingDir"></param>
@@ -22,10 +25,10 @@ namespace CommitViewer
         internal static void Start(string workingDir, string githubUrl)
         {
             Git.Setup();
-            Log.Information("Starting cloning process ...");
+            Log.Debug("Starting cloning process ...");
             workingDir = ProcessUtils.StartCloneProcess(workingDir, githubUrl);
-            Log.Information("Finished cloning process. Retrieving commits....");
-            IEnumerable<Commit> commits = ProcessUtils.StartLogProcess(workingDir);
+            Log.Debug("Finished cloning process. Retrieving commits....");
+            IEnumerable<Commit> commits = ProcessUtils.StartLogProcess(workingDir, CommitProcessor);
             DirectoryUtils.DeleteDirectory(workingDir); //optional
             Log.Information("Retrieved git commits. Returning the list of commits:");
             Log.Information(JsonConvert.SerializeObject(commits));

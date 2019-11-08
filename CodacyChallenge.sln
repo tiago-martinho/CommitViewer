@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommitViewer", "CodacyChallenge\CommitViewer.csproj", "{619F547B-E7D1-459B-8526-60120791E20B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{199DDBCF-ACE6-4361-ADFC-22B6F2150C6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommitViewer", "CommitViewer\CommitViewer.csproj", "{ADE52DE9-A18D-427E-BC90-C9E2928DF66F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{619F547B-E7D1-459B-8526-60120791E20B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{619F547B-E7D1-459B-8526-60120791E20B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{619F547B-E7D1-459B-8526-60120791E20B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{619F547B-E7D1-459B-8526-60120791E20B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{199DDBCF-ACE6-4361-ADFC-22B6F2150C6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{199DDBCF-ACE6-4361-ADFC-22B6F2150C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{199DDBCF-ACE6-4361-ADFC-22B6F2150C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{199DDBCF-ACE6-4361-ADFC-22B6F2150C6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE52DE9-A18D-427E-BC90-C9E2928DF66F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE52DE9-A18D-427E-BC90-C9E2928DF66F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE52DE9-A18D-427E-BC90-C9E2928DF66F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE52DE9-A18D-427E-BC90-C9E2928DF66F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

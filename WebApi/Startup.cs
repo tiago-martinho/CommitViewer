@@ -32,14 +32,15 @@ namespace WebApi
         {
             Git.Setup();
             services.AddMvc();
+            services.AddHealthChecks();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
                 {
-                    Title = "CodacyChallengeApi",
+                    Title = "CommitViewer Web API",
                     Version = "v1",
-                    Description = "This WebApi is the second part of the Codacy challenge"
+                    Description = "This WebApi represents the second part of the Codacy challenge"
                 });
             });
 
@@ -49,6 +50,10 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            //basic health check
+            app.UseHealthChecks("/health");
+
             app.UseSwagger(setupAction =>
             {
                 setupAction.RouteTemplate = "docs/api/{documentName}/swagger.json";
@@ -62,9 +67,9 @@ namespace WebApi
 
             app.UseSwaggerUI(uiSetupAction =>
             {
-                uiSetupAction.SwaggerEndpoint($"/docs/api/v1/swagger.json", "v1");
-                uiSetupAction.DocumentTitle = "CodacyChallenge WebAPI";
-                uiSetupAction.RoutePrefix = "docs/api";
+                uiSetupAction.SwaggerEndpoint("/docs/api/v1/swagger.json", "v1");
+                uiSetupAction.DocumentTitle = "CommitViewer Web API";
+                uiSetupAction.RoutePrefix = "commitviewer/api";
             });
 
             //CORS issues using swagger UI, otherwise works fine even with HttpsRedirect

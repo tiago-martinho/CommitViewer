@@ -5,10 +5,11 @@ using System.IO;
 using CommitViewer.Enums;
 using CommitViewer.Models;
 using CommitViewer.Utils;
+using Serilog;
 
 namespace CommitViewer.CommitProcessors
 {
-    internal class CommitProcessor : ICommitProcessor
+    public class CommitProcessor : ICommitProcessor
     {
 
         /// <summary>
@@ -18,7 +19,9 @@ namespace CommitViewer.CommitProcessors
         /// <returns></returns>
         public IEnumerable<Commit> ProcessCommitStream(TextReader textReader)
         {
+            Log.Debug("Processing the commit stream...");
             string line = textReader.ReadLine();
+            Log.Verbose("Processing line: {0}", line);
             ICollection<Commit> commitCollection = new Collection<Commit>();
             Commit commit = new Commit();
             while (line != null)
@@ -26,6 +29,7 @@ namespace CommitViewer.CommitProcessors
                 if (ProcessCommitLine(line, commit))
                 {
                     commitCollection.Add(commit);
+                    Log.Verbose("Finished processing the commit: {0}", commit);
                     commit = new Commit();
                 }
                 line = textReader.ReadLine();
@@ -82,7 +86,7 @@ namespace CommitViewer.CommitProcessors
                     return false;
             }
 
-            Console.WriteLine("Couldn't process this particular line. It will be ignored.");
+            Log.Warning("Couldn't process this particular line. It will be ignored.");
             return false;
         }
 

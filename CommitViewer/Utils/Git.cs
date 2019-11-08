@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Serilog;
 
 namespace CommitViewer
 {
@@ -16,7 +15,7 @@ namespace CommitViewer
                 throw new InvalidOperationException("The GIT environment variable is not set. Please set the environment variable pointing to your git.exe");
             }
 
-            Console.WriteLine("Git environment variable is set");
+            Log.Debug("Git environment variable is set. GitPath is now defined with value: {0}", GitPath);
         }
     }
 }

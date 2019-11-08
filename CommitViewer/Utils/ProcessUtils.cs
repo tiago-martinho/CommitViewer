@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using CommitViewer.CommitProcessors;
 using CommitViewer.Models;
+using Serilog;
 
 namespace CommitViewer.Utils
 {
@@ -33,15 +34,14 @@ namespace CommitViewer.Utils
         }
 
         /// <summary>
-        /// Starts the repo log process. Waits until process is finished.
+        /// Starts the repo log process and processes the logs using a given commit processor. Waits until process is finished.
         /// Returns a commit enumerable
         /// </summary>
-        public static IEnumerable<Commit> StartLogProcess(string workingDir)
+        public static IEnumerable<Commit> StartLogProcess(string workingDir, ICommitProcessor commitProcessor)
         {
             ProcessStartInfo logProcessInfo = GetLogProcessInfo(workingDir);
             Process logProcess = new Process { StartInfo = logProcessInfo };
             logProcess.Start();
-            ICommitProcessor commitProcessor = new CommitProcessor();
             IEnumerable<Commit> commits = commitProcessor.ProcessCommitStream(logProcess.StandardOutput);
             logProcess.WaitForExit();
             return commits;
@@ -51,12 +51,11 @@ namespace CommitViewer.Utils
         /// Starts the repo log process. Waits until process is finished.
         /// Returns a commit enumerable
         /// </summary>
-        public static IEnumerable<Commit> StartLogProcess(string workingDir, int maxCount, int skipNumber)
+        public static IEnumerable<Commit> StartLogProcess(string workingDir, ICommitProcessor commitProcessor, int maxCount, int skipNumber)
         {
             ProcessStartInfo logProcessInfo = GetLogProcessInfo(workingDir, maxCount, skipNumber);
             Process logProcess = new Process { StartInfo = logProcessInfo };
             logProcess.Start();
-            ICommitProcessor commitProcessor = new CommitProcessor();
             IEnumerable<Commit> commits = commitProcessor.ProcessCommitStream(logProcess.StandardOutput);
             logProcess.WaitForExit();
             return commits;

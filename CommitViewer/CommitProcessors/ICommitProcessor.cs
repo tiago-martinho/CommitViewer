@@ -4,7 +4,7 @@ using CommitViewer.Models;
 
 namespace CommitViewer.CommitProcessors
 {
-    internal interface ICommitProcessor
+    public interface ICommitProcessor
     {
         IEnumerable<Commit> ProcessCommitStream(TextReader textReader);
     }
