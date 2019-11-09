@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using CommitViewer.CommitProcessors;
-using CommitViewer.Models;
 using CommitViewer.Utils;
+using Domain.Models;
+using Domain.Utils;
 using Microsoft.Extensions.Logging;
 using WebApi.Pagination;
 

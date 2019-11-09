@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using CommitViewer.CommitProcessors;
-using CommitViewer.Models;
+using Domain.Models;
+using Domain.Utils;
 
 namespace CommitViewer.Utils
 {

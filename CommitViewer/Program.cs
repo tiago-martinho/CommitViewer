@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Threading.Tasks;
+using Domain.Models;
+using GitHubClient;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Extensions.Http;
@@ -12,37 +16,33 @@ namespace CommitViewer
 {
     internal static class Program
     {
-        private static string _workingDir;
-        private static string _gitHubUrl;
 
         /// <summary>
         /// Main method that calls the GitHub API first and uses the initial implemented system as a fallback
         /// To test the commit viewer console app in isolation simply remove the try catch and call the CommitViewer app method directly
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
 
+            IServiceCollection services = new ServiceCollection();
             ConfigureLogger();
-            ConfigureServices();
-            ReadUserInput();
-
+            ConfigureServices(services);
+            ServiceProvider serviceProvider = services.BuildServiceProvider();
+            
             try
             {
-                //Use GitHubClient
-                throw new IOException();
+                //Use GitHubService
+                GitHubService gitHubService = serviceProvider.GetRequiredService<GitHubService>();
+                await gitHubService.GetRepositoryCommits("tiago-martinho", "PIDESCO-Search-Component");
             }
-
-            /* No details were given regarding the type of failure that should be caught (besides a network timeout)
-            My reasoning here is that the flow previously implemented should only be used in case where the GitHub API is unavailable
-            If it's available but there's an exception or error (invalid arguments, etc) there isn't much of a reason for using the console
-            app as it will most likely just return the same error. If the point is to always use the console app as a fallback just remove
-            the specific exceptions and simply catch the general one */
-            catch (Exception e) when (e is TimeoutException || e is IOException)
+            // Assuming the commit viewer flow is meant to be always used in case of error
+            // If it's meant to be used only when GitHubAPI is unavailable catching a TimeoutException would be ideal
+            catch (Exception e)
             {
-                Log.Error("An error has occurred while trying to use the GitHub API.", e);
+                Log.Warning("A problem has occurred while trying to use the GitHub API.", e);
                 Log.Warning("Using CommitViewer app process as a fallback...");
-                CommitViewer.Start(_workingDir, _gitHubUrl);
+                CommitViewer.Start();
             }
 
         }
@@ -58,35 +58,20 @@ namespace CommitViewer
 
         }
 
-        private static void ConfigureServices()
+        private static void ConfigureServices(IServiceCollection services)
         {
 
-            var services = new ServiceCollection();
-
             // A circuit breaker pattern could be added in distributed environments
-            services.AddHttpClient<GitHubClient>()
+            services.AddHttpClient<GitHubService>()
                 .AddPolicyHandler(GetRetryPolicy());
         }
 
-        /// <summary>
-        /// Reads the necessary information for processing the commit list
-        /// </summary>
-        private static void ReadUserInput()
-        {
-            while (string.IsNullOrWhiteSpace(_workingDir) || string.IsNullOrWhiteSpace(_gitHubUrl))
-            {
-                Console.WriteLine("Please provide the GitHub url that you want to process...");
-                _gitHubUrl = Console.ReadLine();
-                Console.WriteLine("Please provide your working directory");
-                _workingDir = Console.ReadLine();
-            }
-        }
 
         /// <summary>
         /// Retry policy that defines how many retries and how long between each retry will the HttpClient do for each unsuccessful http request
         /// </summary>
         /// <returns></returns>
-        static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+        private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
         {
             return HttpPolicyExtensions.HandleTransientHttpError().WaitAndRetryAsync(3,
                 retryWaitTime => TimeSpan.FromSeconds(Math.Pow(2, retryWaitTime)));

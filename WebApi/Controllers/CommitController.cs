@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using CommitViewer.Models;
+using Domain.Models;
 using WebApi.Pagination;
 using WebApi.Services;
 

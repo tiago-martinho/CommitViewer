@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace CommitViewer.Models
+namespace Domain.Models
 {
     /// <summary>
     /// Base model class that represents a commit

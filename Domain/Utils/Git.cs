@@ -1,7 +1,6 @@
 ﻿using System;
-using Serilog;
 
-namespace CommitViewer
+namespace Domain.Utils
 {
     public static class Git
     {
@@ -15,7 +14,6 @@ namespace CommitViewer
                 throw new InvalidOperationException("The GIT environment variable is not set. Please set the environment variable pointing to your git.exe");
             }
 
-            Log.Debug("Git environment variable is set. GitPath is now defined with value: {0}", GitPath);
         }
     }
 }

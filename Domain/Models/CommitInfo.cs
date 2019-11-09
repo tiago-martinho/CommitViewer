@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CommitViewer.Models
+﻿namespace Domain.Models
 {
     /// <summary>
     /// Model class that represents commit information nested inside a commit object

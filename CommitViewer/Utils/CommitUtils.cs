@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using CommitViewer.Models;
+using Domain.Models;
 
 namespace CommitViewer.Utils
 {

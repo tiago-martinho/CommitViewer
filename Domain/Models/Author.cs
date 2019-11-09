@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CommitViewer.Models
+namespace Domain.Models
 {
     /// <summary>
     /// Model class that represents an author in a commit

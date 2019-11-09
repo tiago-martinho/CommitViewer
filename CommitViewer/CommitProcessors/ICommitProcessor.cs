@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using CommitViewer.Models;
+using Domain.Models;
 
 namespace CommitViewer.CommitProcessors
 {

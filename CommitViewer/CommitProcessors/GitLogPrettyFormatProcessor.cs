@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Text;
-using CommitViewer.Models;
 using CommitViewer.Utils;
+using Domain.Models;
 using Serilog;
 
 namespace CommitViewer.CommitProcessors
