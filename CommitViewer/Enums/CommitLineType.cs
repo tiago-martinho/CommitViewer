@@ -2,6 +2,6 @@
 {
     internal enum CommitLineType
     {
-        Merge, Author, Date
+        NoType, Author, Date, Merge
     }
 }

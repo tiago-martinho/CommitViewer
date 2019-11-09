@@ -6,20 +6,24 @@ namespace CommitViewer.Utils
 {
     internal static class CommitUtils
     {
-        private const string DateFormat = "ddd MMM d HH:mm:ss yyyy zzz";
         public const char LineTypeSeparator = ':';
 
+        /// <summary>
+        /// Parses dates in strict ISO format given a typical commit date line (e.g Date: datevalue)
+        /// </summary>
+        /// <param name="dateLine"></param>
+        /// <returns></returns>
         internal static DateTime GetDateTime(string dateLine)
         {
             string[] split = dateLine.Split(LineTypeSeparator, 2);
-            DateTime date = DateTime.ParseExact(split[1].TrimStart(), DateFormat, CultureInfo.InvariantCulture);
+            DateTime date = DateTime.Parse(split[1].TrimStart());
             return date;
         }
 
         internal static Author GetAuthor(string authorLine)
         {
             string[] split = authorLine.Split(LineTypeSeparator, 2)[1].Split('<');
-            Author author = new Author {Username = split[0].Trim(), Email = split[1].Replace('>', ' ').Trim()};
+            Author author = new Author {Name = split[0].Trim(), Email = split[1].Replace('>', ' ').Trim()};
             return author;
         }
 
@@ -28,9 +32,19 @@ namespace CommitViewer.Utils
             return hashLine.Split(' ')[1];
         }
 
-        internal static string GetMergeId(string mergeIdLine)
+        internal static Commit GetCommit(string[] commitLineArray)
         {
-            return mergeIdLine.Split(LineTypeSeparator)[1].Trim();
+            Commit commit = new Commit
+            {
+                Hash = commitLineArray[0],
+                CommitInfo = new CommitInfo
+                {
+                    Author = new Author {Date = DateTime.Parse(commitLineArray[1]), Name = commitLineArray[2], Email = commitLineArray[3]},
+                    Message = commitLineArray[4]
+
+                }
+            };
+            return commit;
         }
     }
 }

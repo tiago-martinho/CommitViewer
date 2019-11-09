@@ -12,8 +12,8 @@ namespace CommitViewer
 {
     internal static class Program
     {
-        private static string workingDir;
-        private static string gitHubUrl;
+        private static string _workingDir;
+        private static string _gitHubUrl;
 
         /// <summary>
         /// Main method that calls the GitHub API first and uses the initial implemented system as a fallback
@@ -42,7 +42,7 @@ namespace CommitViewer
             {
                 Log.Error("An error has occurred while trying to use the GitHub API.", e);
                 Log.Warning("Using CommitViewer app process as a fallback...");
-                CommitViewer.Start(workingDir, gitHubUrl);
+                CommitViewer.Start(_workingDir, _gitHubUrl);
             }
 
         }
@@ -52,7 +52,7 @@ namespace CommitViewer
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Minute)
                 .WriteTo.Console()
                 .CreateLogger();
 
@@ -73,12 +73,12 @@ namespace CommitViewer
         /// </summary>
         private static void ReadUserInput()
         {
-            while (string.IsNullOrWhiteSpace(workingDir) || string.IsNullOrWhiteSpace(gitHubUrl))
+            while (string.IsNullOrWhiteSpace(_workingDir) || string.IsNullOrWhiteSpace(_gitHubUrl))
             {
                 Console.WriteLine("Please provide the GitHub url that you want to process...");
-                gitHubUrl = Console.ReadLine();
+                _gitHubUrl = Console.ReadLine();
                 Console.WriteLine("Please provide your working directory");
-                workingDir = Console.ReadLine();
+                _workingDir = Console.ReadLine();
             }
         }
 

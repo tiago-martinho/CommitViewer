@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CommitViewer.CommitProcessors;
 using CommitViewer.Models;
 using CommitViewer.Utils;
@@ -12,10 +13,10 @@ namespace CommitViewer
     static class CommitViewer
     {
         /// <summary>
-        /// We only need to instantiate the CommitProcessor once when we start the CommitViewer app
+        /// We only need to instantiate the GitLogProcessor once when we start the CommitViewer app
         /// However, it's not a static class so that we have can multiple implementations and change which we want to use easily
         /// </summary>
-        private static readonly ICommitProcessor CommitProcessor = new CommitProcessor();
+        private static readonly ICommitProcessor CommitProcessor = new GitLogProcessor();
 
         /// <summary>
         /// Starts the CommitViewer main process. Structured data is serialized and logged in both the console and a log file
@@ -30,8 +31,9 @@ namespace CommitViewer
             Log.Debug("Finished cloning process. Retrieving commits....");
             IEnumerable<Commit> commits = ProcessUtils.StartLogProcess(workingDir, CommitProcessor);
             DirectoryUtils.DeleteDirectory(workingDir); //optional
-            Log.Information("Retrieved git commits. Returning the list of commits:");
-            Log.Information(JsonConvert.SerializeObject(commits));
+            var commitList = commits.ToList(); // just to avoid multiple enumeration
+            Log.Information("Retrieved git commits and parsed into respective data structure: {0}", commitList);
+            Log.Information("{0} commits", commitList.Count);
         }
 
     

@@ -1,23 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace CommitViewer.Models
 {
+    /// <summary>
+    /// Base model class that represents a commit
+    /// </summary>
     public class Commit
     {
-        public Author Author { get; set; }
-
-        public DateTime Date { get; set; }
-
+        [JsonProperty("sha")]
         public string Hash { get; set; }
 
-        public string Message { get; set; }
-
-        public bool IsMerge { get; set; }
-        public string MergeId { get; set; }
+        [JsonProperty("commit")]
+        public CommitInfo CommitInfo { get; set; }
 
         public override string ToString()
         {
-            return $"{nameof(Author)}: {Author}, {nameof(Date)}: {Date}, {nameof(Hash)}: {Hash}, {nameof(Message)}: {Message}, {nameof(IsMerge)}: {IsMerge}, {nameof(MergeId)}: {MergeId}";
+            return $"{nameof(Hash)}: {Hash}, {nameof(CommitInfo)}: {CommitInfo}";
         }
     }
 }

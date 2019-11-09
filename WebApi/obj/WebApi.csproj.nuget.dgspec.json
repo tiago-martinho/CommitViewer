@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\codacy-challenge\\WebApi\\WebApi.csproj": {}
+    "D:\\Dev\\codacy-challenge\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "C:\\dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj": {
-      "version": "0.0.1",
+    "D:\\Dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj": {
+      "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj",
+        "projectUniqueName": "D:\\Dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj",
         "projectName": "CommitViewer",
-        "projectPath": "C:\\dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj",
-        "packagesPath": "C:\\Users\\tiagomartinho.soares\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\codacy-challenge\\CommitViewer\\obj\\",
+        "projectPath": "D:\\Dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj",
+        "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\codacy-challenge\\CommitViewer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\tiagomartinho.soares\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -90,20 +90,20 @@
         }
       }
     },
-    "C:\\dev\\codacy-challenge\\WebApi\\WebApi.csproj": {
-      "version": "0.0.1",
+    "D:\\Dev\\codacy-challenge\\WebApi\\WebApi.csproj": {
+      "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\codacy-challenge\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "D:\\Dev\\codacy-challenge\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\dev\\codacy-challenge\\WebApi\\WebApi.csproj",
-        "packagesPath": "C:\\Users\\tiagomartinho.soares\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\codacy-challenge\\WebApi\\obj\\",
+        "projectPath": "D:\\Dev\\codacy-challenge\\WebApi\\WebApi.csproj",
+        "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\codacy-challenge\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\tiagomartinho.soares\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -116,8 +116,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj": {
-                "projectPath": "C:\\dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj"
+              "D:\\Dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj": {
+                "projectPath": "D:\\Dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj"
               }
             }
           }

@@ -9,8 +9,17 @@ using Serilog;
 
 namespace CommitViewer.CommitProcessors
 {
-    public class CommitProcessor : ICommitProcessor
+
+    /// <summary>
+    /// Commit processor for "git log" process
+    /// </summary>
+    public class GitLogProcessor : ICommitProcessor
     {
+
+        public string GetProcessorArguments()
+        {
+            return "log --date=iso-strict";
+        }
 
         /// <summary>
         /// Processes the commit stream and returns a structured commit collection
@@ -23,14 +32,14 @@ namespace CommitViewer.CommitProcessors
             string line = textReader.ReadLine();
             Log.Verbose("Processing line: {0}", line);
             ICollection<Commit> commitCollection = new Collection<Commit>();
-            Commit commit = new Commit();
+            Commit commit = new Commit { CommitInfo = new CommitInfo() };
             while (line != null)
             {
                 if (ProcessCommitLine(line, commit))
                 {
                     commitCollection.Add(commit);
                     Log.Verbose("Finished processing the commit: {0}", commit);
-                    commit = new Commit();
+                    commit = new Commit { CommitInfo = new CommitInfo() };
                 }
                 line = textReader.ReadLine();
             }
@@ -38,7 +47,7 @@ namespace CommitViewer.CommitProcessors
             return commitCollection;
 
         }
-    
+
         /// <summary>
         /// Processes each commit line from a single commit
         /// Returns true if it processed the last relevant information of the commit (the message), returns false otherwise
@@ -65,31 +74,33 @@ namespace CommitViewer.CommitProcessors
                     return false;
                 }
 
-                commit.Message = line.Trim();
-                return true;
+                if (commit.CommitInfo != null)
+                {
+                    commit.CommitInfo.Message = line.Trim();
+                    return true;
+                }
 
             }
 
             switch (commitLineType)
             {
-                case CommitLineType.Merge:
-                {
-                    commit.IsMerge = true;
-                    commit.MergeId = CommitUtils.GetMergeId(line);
-                    return false;
-                }
-                case CommitLineType.Author: 
-                    commit.Author = CommitUtils.GetAuthor(line);
+                case CommitLineType.Author:
+                    if (commit.CommitInfo != null)
+                    {
+                        commit.CommitInfo.Author = CommitUtils.GetAuthor(line);
+                    }
                     return false;
                 case CommitLineType.Date:
-                    commit.Date = CommitUtils.GetDateTime(line);
+                    if (commit.CommitInfo?.Author != null)
+                    {
+                        commit.CommitInfo.Author.Date = CommitUtils.GetDateTime(line);
+                    }
+                    return false;
+                default:
+                    Log.Warning("Couldn't process this particular line. It will be ignored.");
                     return false;
             }
-
-            Log.Warning("Couldn't process this particular line. It will be ignored.");
-            return false;
         }
 
-  
     }
 }
