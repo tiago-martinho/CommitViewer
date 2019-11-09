@@ -19,7 +19,6 @@ namespace CommitViewer
 
         /// <summary>
         /// Main method that calls the GitHub API first and uses the initial implemented system as a fallback
-        /// To test the commit viewer console app in isolation simply remove the try catch and call the CommitViewer app method directly
         /// </summary>
         /// <param name="args"></param>
         private static async Task Main(string[] args)
@@ -29,24 +28,8 @@ namespace CommitViewer
             ConfigureLogger();
             ConfigureServices(services);
             ServiceProvider serviceProvider = services.BuildServiceProvider();
-            
-            try
-            {
-                //Use GitHubService
-                GitHubService gitHubService = serviceProvider.GetRequiredService<GitHubService>();
-                await gitHubService.GetRepositoryCommits("tiago-martinho", "PIDESCO-Search-Component");
-            }
-            // Assuming the commit viewer flow is meant to be always used in case of error
-            // If it's meant to be used only when GitHubAPI is unavailable catching a TimeoutException would be ideal
-            catch (Exception e)
-            {
-                Log.Warning("A problem has occurred while trying to use the GitHub API.", e);
-                Log.Warning("Using CommitViewer app process as a fallback...");
-                CommitViewer.Start();
-            }
-
+            await CommitViewer.Start(serviceProvider.GetRequiredService<GitHubService>());
         }
-
 
         private static void ConfigureLogger()
         {

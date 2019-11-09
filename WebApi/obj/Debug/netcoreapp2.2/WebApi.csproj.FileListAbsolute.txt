@@ -36,3 +36,7 @@ D:\Dev\codacy-challenge\WebApi\bin\Debug\netcoreapp2.2\appsettings.json
 D:\Dev\codacy-challenge\WebApi\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
 D:\Dev\codacy-challenge\WebApi\bin\Debug\netcoreapp2.2\CommitViewer.dll
 D:\Dev\codacy-challenge\WebApi\bin\Debug\netcoreapp2.2\CommitViewer.pdb
+D:\Dev\codacy-challenge\WebApi\bin\Debug\netcoreapp2.2\Domain.dll
+D:\Dev\codacy-challenge\WebApi\bin\Debug\netcoreapp2.2\GitHubClient.dll
+D:\Dev\codacy-challenge\WebApi\bin\Debug\netcoreapp2.2\Domain.pdb
+D:\Dev\codacy-challenge\WebApi\bin\Debug\netcoreapp2.2\GitHubClient.pdb
