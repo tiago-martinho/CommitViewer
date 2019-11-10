@@ -23,6 +23,7 @@ namespace CommitViewer
         private static string _gitHubUrl;
         private static string _username;
         private static string _repoName;
+        private static bool _deleteLocalRepoAfterRunningProgram = false;
 
         /// <summary>
         /// We only need to instantiate the GitLogProcessor once when we start the CommitViewer app
@@ -48,8 +49,8 @@ namespace CommitViewer
             catch (Exception e)
             {
                 Log.Warning("A problem has occurred while trying to use the GitHub API. {0}", e);
-                Log.Warning("Using git process as a fallback...");
-                commits = StartGitCommitLogProcess(true);
+                Log.Warning("Using git process as a fallback. The program will have to clone the repository in order to list the commits...");
+                commits = StartGitCommitLogProcess(_deleteLocalRepoAfterRunningProgram);
             }
 
             var commitList = commits.ToList(); // to avoid multiple enumeration
@@ -69,8 +70,9 @@ namespace CommitViewer
             _workingDir = ProcessUtils.StartCloneProcess(_workingDir, _gitHubUrl);
             Log.Debug("Finished cloning process. Retrieving commits....");
             IEnumerable<Commit> commits = ProcessUtils.StartLogProcess(_workingDir, CommitProcessor);
-            if (deleteClonedRepo)
+            if (_deleteLocalRepoAfterRunningProgram)
             {
+                Log.Information("Deleting repository in {0}", _workingDir);
                 DirectoryUtils.DeleteDirectory(_workingDir);
             }
             return commits;
@@ -81,20 +83,39 @@ namespace CommitViewer
         /// </summary>
         private static void ReadGitProcessUserInput()
         {
-            while (string.IsNullOrWhiteSpace(_workingDir) || string.IsNullOrWhiteSpace(_gitHubUrl))
+            while (string.IsNullOrWhiteSpace(_workingDir))
             {
-                Console.WriteLine("Please provide the GitHub url that you want to process...");
-                _gitHubUrl = Console.ReadLine();
-                Console.WriteLine("Please provide your working directory");
+                Console.WriteLine("Please provide your working directory.");
                 _workingDir = Console.ReadLine();
                 if (!Directory.Exists(_workingDir))
                 {
                     _workingDir = null;
-                    Log.Error("Working directory is not valid! Please provide a valid working directory path");
+                    Log.Warning("Working directory is not valid! Please provide a valid working directory path");
                 }
             }
+
+            // Could possibly add some more validation but I think it's out of scope
+            while (string.IsNullOrWhiteSpace(_gitHubUrl))
+            {
+                Console.WriteLine("Please provide the GitHub url that you want to process.");
+                _gitHubUrl = Console.ReadLine();
+            }
+
+            Console.WriteLine("Do you wish to delete your local repository after viewing the commits? Type 'Y' or 'y' for yes or anything else for no.");
+            string answer = Console.ReadLine();
+            if (string.Equals(answer, "Y", StringComparison.OrdinalIgnoreCase))
+            {
+                _deleteLocalRepoAfterRunningProgram = true;
+                Log.Information("The repository will be deleted locally after the logging process");
+            }
+            else
+            {
+                _deleteLocalRepoAfterRunningProgram = false;
+                Log.Information("The repository won't be deleted locally after the logging process");
+            }
+
             NormalizeGitProcessUserInput();
-           
+
         }
 
         /// <summary>
