@@ -18,9 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="TestData\GitLogPrettyFormatProcessor\Input\Input1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="TestData\GitLogPrettyFormatProcessor\Output\Output1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -30,6 +27,10 @@
     <None Update="TestData\GitLogProcessor\Output\Output1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestData\GitLogPrettyFormatProcessor\Input\" />
   </ItemGroup>
 
 </Project>

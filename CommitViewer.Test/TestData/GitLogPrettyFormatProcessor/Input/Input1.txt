@@ -1,0 +1,24 @@
+21555fc2b172d1ea34b6e0d6b72fe1bb2c74dc39|2019-01-06T17:11:53+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|remove testws
+b3cffabbe8f50c89e699b3782be04a70adecbe9f|2019-01-06T17:08:04+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|adjustments
+62cfd221dfe54d27fd79fabaa08cc14f879b8325|2019-01-06T15:05:23+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|bugfix
+d1d0231919d24eb39ac926cac352317965162481|2019-01-05T23:42:55+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|doc
+19feb231166e40bc0820b03f66d9c812cefa3dcf|2019-01-05T23:28:18+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|Merge branch 'master' of https://github.com/TiagoMartinhoS/pa-iscde-tfmss1
+cebb6e887954f72835d5c973091f9466c39b9173|2019-01-05T23:27:48+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|fixes and tests
+7c12e467441e9daad60c8e0e51461d984a571e25|2019-01-05T16:58:00+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|Update README.md
+ce81d243d84b653239e16cb161f65a9da5dd6f9b|2019-01-05T16:41:31+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|extensibility bug fixes
+2e0bca0c8511f2db79da1ad7e54fe522996f30c6|2018-12-22T16:17:56+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|extension point
+4f2e98f9a65fc3b13c28de2cbc9485a4efe0a5bd|2018-12-15T17:56:13+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|integration complete
+ee5505221286ee8039f8690cff2a86f69f12cbab|2018-12-15T16:50:22+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|Documentation
+cc35f26a43c9c5d11dcd46282a8224bf22864295|2018-12-15T15:31:20+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|QoL changes. EnterKey for search, case insensitive and contains instead of exact match search
+edbb85a1113832a36e394b42b48b9fc36eb28edb|2018-12-15T03:15:39+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|Merge branch 'master' of https://github.com/TiagoMartinhoS/pa-iscde-tfmss1
+c16b898d776151344e25f305be31852f3edf66d9|2018-12-15T03:15:13+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|Update README.md
+729109e1d6e85c3b0e34d21333384c990cc2f805|2018-12-15T03:14:10+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|service with listeners complete
+b1a8d5ab4481af1c71dc22548216834650d65f75|2018-12-15T00:40:17+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|Update README.md
+9785b61f969a59f141463b859d6a5e7b8a432a05|2018-12-14T15:10:49+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|listeners
+4ca76029704519d4686c5c50f138ac22fa2f2996|2018-12-11T19:31:54+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|search feature working completely with ListViewer
+529f5f5c4f1f6e64d20cc3f83a88960984c30711|2018-12-11T16:12:56+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|Search working with ListViewer and integrating with Java Editor
+aa82b848952373d633a6bff4a3bf8f169d65a39c|2018-12-10T08:51:09+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|iteration is done in a separate class now
+e6c26f31da5fff703c2b86d9f3a33a2bf32fa475|2018-12-10T08:44:07+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|Recursive iteration working with folders
+cbdb4eccde49fbf710760fb33698f117f26f6afe|2018-12-05T12:25:52+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|Readme
+89fb3639d2189219aa77aba50d989249a1c27de3|2018-12-05T12:23:17+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|Create README.md
+1e03e13c5b6b64fb481b803a4c7aa9298ff7bd25|2018-12-05T12:20:12+00:00|Tiago Martinho|tiagomartinho.soares@cgi.com|Phase 1
