@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using Domain.Models;
+using WebApi.Exceptions;
 using WebApi.Pagination;
 using WebApi.Services;
 
@@ -24,6 +25,12 @@ namespace WebApi.Controllers
             _commitService = commitService;
         }
 
+        /// <summary>
+        /// Returns a commit collection
+        /// </summary>
+        /// <param name="workingDir"></param>
+        /// <param name="githubUrl"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<IReadOnlyCollection<Commit>> GetCommitCollection(string workingDir, string githubUrl)
         {
@@ -36,10 +43,27 @@ namespace WebApi.Controllers
                 throw new ArgumentException(exceptionMessage);
             }
 
-            ICollection<Commit> commits = _commitService.GetCommitCollection(workingDir, githubUrl);
+            ICollection<Commit> commits;
+            try
+            {
+                commits = _commitService.GetCommitCollection(workingDir, githubUrl);
+            }
+            catch (TimeoutException e)
+            {
+                throw new CommitViewerWebApiException("Took too long to fetch the commits. Please try again later.", e);
+            }
+            
             return Ok(commits);
         }
 
+        /// <summary>
+        /// Returns paginated commit results
+        /// </summary>
+        /// <param name="workingDir"></param>
+        /// <param name="githubUrl"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         [HttpGet("paged")]
         public ActionResult<IPage<Commit>> GetPagedCommits(string workingDir, string githubUrl, int pageNumber, int pageSize)
         {
@@ -54,7 +78,16 @@ namespace WebApi.Controllers
                 throw new ArgumentException(exceptionMessage);
             }
 
-            IPage<Commit> commits = _commitService.GetPagedCommits(workingDir, githubUrl, pageNumber, pageSize);
+            IPage<Commit> commits;
+            try
+            {
+                commits = _commitService.GetPagedCommits(workingDir, githubUrl, pageNumber, pageSize);
+            }
+            catch (TimeoutException e)
+            {
+                throw new CommitViewerWebApiException("Took too long to fetch the commits. Please try again later.", e);
+            }
+
             return Ok(commits);
         }
         

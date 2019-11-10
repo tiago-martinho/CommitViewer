@@ -39,7 +39,6 @@ namespace CommitViewer
             IEnumerable<Commit> commits;
             try
             {
-                throw new Exception();
                 ReadGitHubRequestFlowUserInput();
                 Log.Information("Retrieving commits for user {0} and repository {1}", _username, _repoName);
                 commits = await gitHubService.GetRepositoryCommits(_username, _repoName);
@@ -50,7 +49,7 @@ namespace CommitViewer
             {
                 Log.Warning("A problem has occurred while trying to use the GitHub API. {0}", e);
                 Log.Warning("Using git process as a fallback...");
-                commits = StartGitCommitLogProcess();
+                commits = StartGitCommitLogProcess(true);
             }
 
             var commitList = commits.ToList(); // to avoid multiple enumeration
@@ -62,7 +61,7 @@ namespace CommitViewer
         /// <summary>
         /// Fallback system process that returns a commit list structure
         /// </summary>
-        private static IEnumerable<Commit> StartGitCommitLogProcess()
+        private static IEnumerable<Commit> StartGitCommitLogProcess(bool deleteClonedRepo)
         {
             Git.Setup();
             ReadGitProcessUserInput();
@@ -70,7 +69,10 @@ namespace CommitViewer
             _workingDir = ProcessUtils.StartCloneProcess(_workingDir, _gitHubUrl);
             Log.Debug("Finished cloning process. Retrieving commits....");
             IEnumerable<Commit> commits = ProcessUtils.StartLogProcess(_workingDir, CommitProcessor);
-            DirectoryUtils.DeleteDirectory(_workingDir); //optional
+            if (deleteClonedRepo)
+            {
+                DirectoryUtils.DeleteDirectory(_workingDir);
+            }
             return commits;
         }
 
