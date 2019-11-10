@@ -1,0 +1,35 @@
+[
+  {
+    "sha": "21555fc2b172d1ea34b6e0d6b72fe1bb2c74dc39",
+    "commit": {
+      "Author": {
+        "Name": "Tiago Martinho",
+        "Email": "tiagomartinho.soares@cgi.com",
+        "Date": "2019-01-06T17:11:53+00:00"
+      },
+      "Message": "remove testws"
+    }
+  },
+  {
+    "sha": "b3cffabbe8f50c89e699b3782be04a70adecbe9f",
+    "commit": {
+      "Author": {
+        "Name": "Tiago Martinho",
+        "Email": "tiagomartinho.soares@cgi.com",
+        "Date": "2019-01-06T17:08:04+00:00"
+      },
+      "Message": "adjustments"
+    }
+  },
+  {
+    "sha": "62cfd221dfe54d27fd79fabaa08cc14f879b8325",
+    "commit": {
+      "Author": {
+        "Name": "Tiago Martinho",
+        "Email": "tiagomartinho.soares@cgi.com",
+        "Date": "2019-01-06T15:05:23+00:00"
+      },
+      "Message": "bugfix"
+    }
+  }
+]

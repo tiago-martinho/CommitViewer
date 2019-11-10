@@ -11,7 +11,7 @@ namespace CommitViewer.CommitProcessors
 {
 
     /// <summary>
-    /// Commit processor for "git log" process
+    /// Commit processor for "git log --date=iso-strict" process
     /// </summary>
     public class GitLogProcessor : ICommitProcessor
     {
@@ -23,6 +23,7 @@ namespace CommitViewer.CommitProcessors
 
         /// <summary>
         /// Processes the commit stream and returns a structured commit collection
+        /// It ignores the merge line for simplicity and consistency with the data structure and other processors
         /// </summary>
         /// <param name="textReader"></param>
         /// <returns></returns>
@@ -97,7 +98,7 @@ namespace CommitViewer.CommitProcessors
                     }
                     return false;
                 default:
-                    Log.Warning("Couldn't process this particular line. It will be ignored.");
+                    Log.Warning("Couldn't process this particular line: {0}. It will be ignored.", line);
                     return false;
             }
         }

@@ -4,7 +4,9 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Domain.Models;
+using Domain.Utils;
 using GitHubClient;
+using GitHubClient.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Extensions.Http;
@@ -28,7 +30,7 @@ namespace CommitViewer
             ConfigureLogger();
             ConfigureServices(services);
             ServiceProvider serviceProvider = services.BuildServiceProvider();
-            await CommitViewer.Start(serviceProvider.GetRequiredService<GitHubService>());
+            await CommitViewer.Start(serviceProvider.GetRequiredService<IGitHubService>());
         }
 
         private static void ConfigureLogger()
@@ -45,7 +47,7 @@ namespace CommitViewer
         {
 
             // A circuit breaker pattern could be added in distributed environments
-            services.AddHttpClient<GitHubService>()
+            services.AddHttpClient<IGitHubService, GitHubService>()
                 .AddPolicyHandler(GetRetryPolicy());
         }
 

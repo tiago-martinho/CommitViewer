@@ -5,9 +5,13 @@ using System.Threading.Tasks;
 using Domain.Models;
 using GitHubClient.Exceptions;
 
-namespace GitHubClient
+namespace GitHubClient.Services
 {
-    public class GitHubService
+    /// <summary>
+    /// Main GitHubService
+    /// This service could be decomposed into smaller services for a bigger project like (CommitService, RepositoryService, UserService, etc)
+    /// </summary>
+    public class GitHubService : IGitHubService
     {
         private HttpClient Client { get; }
 
@@ -22,6 +26,12 @@ namespace GitHubClient
             Client = client;
         }
 
+        /// <summary>
+        /// Gets repository commits for a given repository and username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="repositoryName"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<Commit>> GetRepositoryCommits(string username, string repositoryName)
         {
 

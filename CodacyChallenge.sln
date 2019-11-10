@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommitViewer", "CommitViewer\CommitViewer.csproj", "{ADE52DE9-A18D-427E-BC90-C9E2928DF66F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubClient", "GitHubClient\GitHubClient.csproj", "{171C253E-970B-47B5-A128-5B3529FFF4CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubClient", "GitHubClient\GitHubClient.csproj", "{171C253E-970B-47B5-A128-5B3529FFF4CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{740D73F4-425A-4E47-A73A-AFAF756C331F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{740D73F4-425A-4E47-A73A-AFAF756C331F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommitViewer.Test", "CommitViewer.Test\CommitViewer.Test.csproj", "{C1CBA0AB-0576-4CF1-991B-1D8A81C9EAFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{740D73F4-425A-4E47-A73A-AFAF756C331F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{740D73F4-425A-4E47-A73A-AFAF756C331F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{740D73F4-425A-4E47-A73A-AFAF756C331F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1CBA0AB-0576-4CF1-991B-1D8A81C9EAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1CBA0AB-0576-4CF1-991B-1D8A81C9EAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1CBA0AB-0576-4CF1-991B-1D8A81C9EAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1CBA0AB-0576-4CF1-991B-1D8A81C9EAFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

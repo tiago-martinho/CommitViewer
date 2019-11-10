@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using CommitViewer.CommitProcessors;
 using Domain.Models;
 using Domain.Utils;
+using Serilog;
 
 namespace CommitViewer.Utils
 {
@@ -68,6 +70,7 @@ namespace CommitViewer.Utils
         {
             string[] gitHubUrlArray = githubUrl.Split('/');
             workingDir += gitHubUrlArray[gitHubUrlArray.Length - 1];
+            Log.Debug("Updated working directory {0}", workingDir);
             return workingDir;
         }
 

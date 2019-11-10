@@ -5,6 +5,9 @@ using System.Text;
 
 namespace GitHubClient.Exceptions
 {
+    /// <summary>
+    /// Base exception for GitHubClient
+    /// </summary>
     public class GitHubClientException : Exception
     {
         public GitHubClientException()

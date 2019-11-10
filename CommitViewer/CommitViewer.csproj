@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\GitHubClient\GitHubClient.csproj"/>
+    <ProjectReference Include="..\GitHubClient\GitHubClient.csproj" />
   </ItemGroup>
 
 </Project>
