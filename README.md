@@ -1,5 +1,5 @@
 # Codacy Challenge
-This solution allows users to view commits of a certain GitHub repository. There's 5 projects included in the solution. 
+This solution allows users to view commits of a certain GitHub repository. There are 5 projects included in the solution. 
 See below on how to use each of the projects.
 
 ## CommitViewer
