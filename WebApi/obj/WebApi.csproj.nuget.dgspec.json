@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\codacy-challenge\\WebApi\\WebApi.csproj": {}
+    "C:\\dev\\commit-viewer\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "C:\\dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj": {
+    "C:\\dev\\commit-viewer\\CommitViewer\\CommitViewer.csproj": {
       "version": "0.0.1",
       "restore": {
-        "projectUniqueName": "C:\\dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj",
+        "projectUniqueName": "C:\\dev\\commit-viewer\\CommitViewer\\CommitViewer.csproj",
         "projectName": "CommitViewer",
-        "projectPath": "C:\\dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj",
+        "projectPath": "C:\\dev\\commit-viewer\\CommitViewer\\CommitViewer.csproj",
         "packagesPath": "C:\\Users\\tiagomartinho.soares\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\codacy-challenge\\CommitViewer\\obj\\",
+        "outputPath": "C:\\dev\\commit-viewer\\CommitViewer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -86,18 +86,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\dev\\codacy-challenge\\WebApi\\WebApi.csproj": {
+    "C:\\dev\\commit-viewer\\WebApi\\WebApi.csproj": {
       "version": "0.0.1",
       "restore": {
-        "projectUniqueName": "C:\\dev\\codacy-challenge\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "C:\\dev\\commit-viewer\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\dev\\codacy-challenge\\WebApi\\WebApi.csproj",
+        "projectPath": "C:\\dev\\commit-viewer\\WebApi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\tiagomartinho.soares\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\codacy-challenge\\WebApi\\obj\\",
+        "outputPath": "C:\\dev\\commit-viewer\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -116,8 +116,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj": {
-                "projectPath": "C:\\dev\\codacy-challenge\\CommitViewer\\CommitViewer.csproj"
+              "C:\\dev\\commit-viewer\\CommitViewer\\CommitViewer.csproj": {
+                "projectPath": "C:\\dev\\commit-viewer\\CommitViewer\\CommitViewer.csproj"
               }
             }
           }
@@ -163,7 +163,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
