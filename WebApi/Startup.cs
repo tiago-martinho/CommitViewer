@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using CommitViewer;
+using CommitViewer.Utils;
+using Domain.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -40,7 +42,7 @@ namespace WebApi
                 {
                     Title = "CommitViewer Web API",
                     Version = "v1",
-                    Description = "This WebApi represents the second part of the Codacy challenge"
+                    Description = "WebApi for retrieving commits"
                 });
             });
 

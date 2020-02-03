@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CommitViewer.Models;
+using Domain.Models;
 using WebApi.Pagination;
 
 namespace WebApi.Services

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
+using System.Text.RegularExpressions;
 using CommitViewer.CommitProcessors;
-using CommitViewer.Models;
+using Domain.Models;
+using Domain.Utils;
 using Serilog;
 
 namespace CommitViewer.Utils
@@ -39,10 +40,10 @@ namespace CommitViewer.Utils
         /// </summary>
         public static IEnumerable<Commit> StartLogProcess(string workingDir, ICommitProcessor commitProcessor)
         {
-            ProcessStartInfo logProcessInfo = GetLogProcessInfo(workingDir);
+            ProcessStartInfo logProcessInfo = GetLogProcessInfo(workingDir, commitProcessor.GetProcessorArguments());
             Process logProcess = new Process { StartInfo = logProcessInfo };
             logProcess.Start();
-            IEnumerable<Commit> commits = commitProcessor.ProcessCommitStream(logProcess.StandardOutput);
+            IEnumerable<Commit>commits = commitProcessor.ProcessCommitStream(logProcess.StandardOutput);
             logProcess.WaitForExit();
             return commits;
         }
@@ -51,9 +52,9 @@ namespace CommitViewer.Utils
         /// Starts the repo log process. Waits until process is finished.
         /// Returns a commit enumerable
         /// </summary>
-        public static IEnumerable<Commit> StartLogProcess(string workingDir, ICommitProcessor commitProcessor, int maxCount, int skipNumber)
+        public static IEnumerable<Commit> StartPagedLogProcess(string workingDir, ICommitProcessor commitProcessor, int maxCount, int skipNumber)
         {
-            ProcessStartInfo logProcessInfo = GetLogProcessInfo(workingDir, maxCount, skipNumber);
+            ProcessStartInfo logProcessInfo = GetPagedLogProcessInfo(workingDir, commitProcessor.GetProcessorArguments(), maxCount, skipNumber);
             Process logProcess = new Process { StartInfo = logProcessInfo };
             logProcess.Start();
             IEnumerable<Commit> commits = commitProcessor.ProcessCommitStream(logProcess.StandardOutput);
@@ -69,6 +70,7 @@ namespace CommitViewer.Utils
         {
             string[] gitHubUrlArray = githubUrl.Split('/');
             workingDir += gitHubUrlArray[gitHubUrlArray.Length - 1];
+            Log.Debug("Updated working directory {0}", workingDir);
             return workingDir;
         }
 
@@ -86,7 +88,7 @@ namespace CommitViewer.Utils
             return startInfo;
         }
 
-        private static ProcessStartInfo GetLogProcessInfo(string workingDir)
+        private static ProcessStartInfo GetLogProcessInfo(string workingDir, string arguments)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo(Git.GitPath)
             {
@@ -94,13 +96,13 @@ namespace CommitViewer.Utils
                 WorkingDirectory = workingDir,
                 RedirectStandardInput = true,
                 RedirectStandardOutput = true,
-                Arguments = "log HEAD"
+                Arguments = arguments + " HEAD"
             };
 
             return startInfo;
         }
 
-        private static ProcessStartInfo GetLogProcessInfo(string workingDir, int maxCount, int skipNumber)
+        private static ProcessStartInfo GetPagedLogProcessInfo(string workingDir, string arguments, int maxCount, int skipNumber)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo(Git.GitPath)
             {
@@ -108,7 +110,7 @@ namespace CommitViewer.Utils
                 WorkingDirectory = workingDir,
                 RedirectStandardInput = true,
                 RedirectStandardOutput = true,
-                Arguments = "log --max-count=" + maxCount + " --skip=" + skipNumber + " HEAD"
+                Arguments = arguments + " --max-count=" + maxCount + " --skip=" + skipNumber + " HEAD"
             };
 
             return startInfo;

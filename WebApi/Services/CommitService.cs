@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using CommitViewer.CommitProcessors;
-using CommitViewer.Models;
 using CommitViewer.Utils;
+using Domain.Models;
+using Domain.Utils;
 using Microsoft.Extensions.Logging;
 using WebApi.Pagination;
 
@@ -11,24 +13,23 @@ namespace WebApi.Services
     public class CommitService : ICommitService
     {
         /// <summary>
-        /// We only need to instantiate the CommitProcessor once when we instantiate the commit service
+        /// We only need to instantiate the ICommitProcessor once when we instantiate the commit service
         /// However, it's not a static class so that we have can multiple implementations and change which we want to use easily
         /// </summary>
-        private readonly ICommitProcessor commitProcessor;
-        private readonly ILogger logger;
+        private readonly ICommitProcessor _commitProcessor = new GitLogProcessor();
+        private readonly ILogger _logger;
 
         public CommitService(ILogger<CommitService> logger)
         {
-            this.logger = logger;
-            commitProcessor = new CommitProcessor();
+            _logger = logger;
         }
 
         public ICollection<Commit> GetCommitCollection(string workingDir, string githubUrl)
         {
-            logger.LogInformation("Starting cloning process...");
+            _logger.LogInformation("Starting cloning process...");
             workingDir = ProcessUtils.StartCloneProcess(workingDir, githubUrl);
-            logger.LogInformation("Repository was cloned. Starting log process...");
-            ICollection<Commit> commits = ProcessUtils.StartLogProcess(workingDir, commitProcessor).ToImmutableList();
+            _logger.LogInformation("Repository was cloned. Starting log process...");
+            ICollection<Commit> commits = ProcessUtils.StartLogProcess(workingDir, _commitProcessor).ToImmutableList();
             DirectoryUtils.DeleteDirectory(workingDir);
             return commits;
 
@@ -36,11 +37,13 @@ namespace WebApi.Services
 
         public IPage<Commit> GetPagedCommits(string workingDir, string githubUrl, int pageNumber, int pageSize)
         {
+            GitLogProcessor gitLogProcessor = new GitLogProcessor();  //paged methods have to use the base GitLogProcessor
             workingDir = ProcessUtils.StartCloneProcess(workingDir, githubUrl);
             int totalElements = ProcessUtils.StartCommitCountProcess(workingDir);
-            IEnumerable<Commit> commits = ProcessUtils.StartLogProcess(workingDir, commitProcessor, pageSize, CalculateSkipNumber(pageNumber, pageSize));
+            IEnumerable<Commit> commits = ProcessUtils.StartPagedLogProcess(workingDir, gitLogProcessor, pageSize, CalculateSkipNumber(pageNumber, pageSize));
             DirectoryUtils.DeleteDirectory(workingDir);
             return new Page<Commit>(pageNumber, pageSize, totalElements, commits);
+
         }
 
         private int CalculateSkipNumber(int pageNumber, int pageSize)
